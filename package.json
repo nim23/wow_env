@@ -4,10 +4,14 @@
   "main": "app/main.js",
   "scripts": {
     "build": "electron-packager . Example --platform=darwin --arch=x64 --version=0.30.3 --ignore=node_modules/electron --icon=Icon.icns",
-    "start": "electron ."
+    "start": "browserify app/app.js -t babelify --outfile app/build/bundle.js && electron ."
   },
   "dependencies": {
     "babel": "^5.8.23",
-    "menubar": "^2.2.1"
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
+    "menubar": "^2.2.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
   }
 }
