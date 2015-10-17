@@ -19,8 +19,8 @@ export default function (env) {
 			}
 		}
 	});
-	console.log(comments);
+
 	code = escodegen.attachComments(code, comments, code.tokens);
-	code = escodegen.generate(code, { comment: true });
+	code = escodegen.generate(code, { comment: true, format: { json: true } });
 	fs.writeFileSync('/Users/ngurung/project-cooper/www/app/settings/local.js', code, 'utf-8');
 }
