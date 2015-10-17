@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changeEnv from '../code-parser/change-env';
 
 export default React.createClass({
 	getInitialState() {
@@ -10,7 +11,7 @@ export default React.createClass({
 			}, {
 				label: 'Dev',
 				value: 'dev'
-			}, 
+			},
 			{
 				label: 'Uat',
 				value: 'uat'
@@ -21,12 +22,16 @@ export default React.createClass({
 		};
 	},
 
+	onClick(e) {
+		changeEnv();
+	},
+
 	renderEnvList() {
 		return this.state.environments.map((env)=> {
 			return (
-				<div className="env">
-					<label>{env.label}</label>
-				</div>
+				<a className="env" onClick={ this.onClick.bind(this, env.value) }>
+					{env.label}
+				</a>
 			)
 		});
 	},
