@@ -26,9 +26,9 @@ export default React.createClass({
 	},
 
 	renderEnvList() {
-		return this.state.environments.map((env)=> {
+		return this.state.environments.map((env, index)=> {
 			return (
-				<a className="env" onClick={ this.onClick.bind(this, env.value) }>
+				<a key={index} className="env" onClick={ this.onClick.bind(this, env.value) }>
 					{env.label}
 				</a>
 			);
