@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import changeEnv from '../code-parser/change-env';
 
 export default React.createClass({
@@ -22,8 +21,8 @@ export default React.createClass({
 		};
 	},
 
-	onClick(e) {
-		changeEnv();
+	onClick(value) {
+		changeEnv(value);
 	},
 
 	renderEnvList() {
@@ -32,7 +31,7 @@ export default React.createClass({
 				<a className="env" onClick={ this.onClick.bind(this, env.value) }>
 					{env.label}
 				</a>
-			)
+			);
 		});
 	},
 

@@ -1,24 +1,24 @@
 import esprima from 'esprima';
 import estraverse from 'estraverse';
 import escodegen from 'escodegen';
-import fs from 'browserify-fs';
+import fs from 'fs';
 let code,
 	filePath = '/Users/ngurung/project-cooper/www/app/settings/local.js';
 
 export default function (env) {
-	fs.readFile(filePath, (err, file) => {
-		code = esprima.parse(file);
-		estraverse.replace(code, {
-			enter: function(node, parent){
-				// console.log(node);
-				// this.skip();
-				if(node.type === 'expression'){
-						return esprima.parse(`{ local: ${env}}`);
-				}
+	let comments,
+			file = fs.readFileSync(filePath, 'utf-8');
+	code = esprima.parse(file, {range: true, tokens: true, comment: true});
+	comments = code.comments;
+	estraverse.traverse(code, {
+		enter (node) {
+			if (node.type === 'Literal') {
+				node.value = env;
+				this.skip();
 			}
-		});
-		console.log(code);
-		console.log(escodegen.generate(code));
+		}
 	});
-	// escodegen.attachComments(code, code.comments, code.tokens);
+	code = escodegen.attachComments(code, comments, code.tokens);
+	code = escodegen.generate(code, { comments: true });
+	fs.writeFileSync('/Users/ngurung/project-cooper/www/app/settings/local.js', code, 'utf-8');
 }
