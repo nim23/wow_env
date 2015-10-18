@@ -7,25 +7,12 @@ import { Link } from 'react-router';
 
 export default React.createClass({
 
-	renderList() {
-		if (projects.getProjects().length) {
-			return (
-				<List />
-			);
-		}
-		return (
-			<div className='dashboard-message'>
-				{`No project's added yet.`}
-			</div>
-		);
-	},
-
 	renderFooter() {
 		return (
 			<Footer>
-				<Link to={'/add-project'} className="btn btn-primary">
-					{`Add Project`}
-				</Link>
+				<button className="btn btn-primary pull-right">
+					{`Save`}
+				</button>
 			</Footer>
 		);
 	},
@@ -33,8 +20,7 @@ export default React.createClass({
 	render() {
 		return (
 			<section className='content'>
-				<Header title={`Dashboard`} />
-				{this.renderList()}
+				<Header title={`Add Project`} />
 				{this.renderFooter()}
 			</section>
 		);

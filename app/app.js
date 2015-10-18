@@ -3,17 +3,25 @@ import ReactDom from 'react-dom';
 import List from './components/list';
 import Header from './components/header';
 import Footer from './components/footer';
-import { Router, Route, Link } from 'react-router';
+import { IndexRoute, Router, Route, Link } from 'react-router';
 import Dashboard from './pages/dashboard';
+import AddProject from './pages/addproject';
 
 let App =  React.createClass({
 	render() {
 		return (
-			<Router>
-				<Route path="/" component={Dashboard}/>
-			</Router>
+			<section className="content">
+				{ this.props.children }
+			</section>
 		);
 	}
 });
 
-ReactDom.render(<App/>, document.getElementById('main'));
+ReactDom.render((
+	<Router>
+		<Route path='/' component={App}>
+			<IndexRoute component={Dashboard} />
+			<Route path='add-project' component={AddProject} />
+		</Route>
+	</Router>),
+	document.getElementById('main'));
