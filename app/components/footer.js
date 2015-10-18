@@ -5,9 +5,7 @@ export default React.createClass({
 		return (
 			<footer className="toolbar toolbar-footer">
 				<div className="toolbar-actions">
-					<button className="btn btn-primary">
-						Add Project
-					</button>
+					{this.props.children}
 				</div>
 			</footer>
 		);
