@@ -22,6 +22,7 @@ ReactDom.render((
 		<Route path='/' component={App}>
 			<IndexRoute component={Dashboard} />
 			<Route path='add-project' component={AddProject} />
+			<Route path='project/:projectName' component={AddProject} />
 		</Route>
 	</Router>),
 	document.getElementById('main'));

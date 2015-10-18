@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '../components/list';
+import ProjectsList from '../components/projectslist';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import projects from '../db/projects';
@@ -10,7 +10,7 @@ export default React.createClass({
 	renderList() {
 		if (projects.getProjects().length) {
 			return (
-				<List />
+				<ProjectsList projects={ projects.getProjects() } />
 			);
 		}
 		return (
