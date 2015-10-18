@@ -11,7 +11,7 @@ export default function (env, filePath) {
 	code = esprima.parse(file, {range: true, tokens: true, comment: true});
 	comments = code.comments;
 	estraverse.traverse(code, {
-		enter (node) {
+		enter (node, parent) {
 			if (node.type === 'Literal' && parent.key.name === 'environment') {
 				node.value = env;
 				this.skip();

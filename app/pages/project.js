@@ -34,7 +34,8 @@ export default React.createClass({
 		return (
 			<section className='content'>
 				<Header title={`${this.props.params.projectName}`} />
-				{this.renderEnvList()}
+				{ this.renderEnvList() }
+				{ this.renderFooter() }
 			</section>
 		);
 	}

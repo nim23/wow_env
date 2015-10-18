@@ -7,7 +7,7 @@ export default React.createClass({
 	renderProjectList() {
 		return this.props.projects.map((project, index)=> {
 			return (
-				<Link to={`project/${project.name}`} key={ index } className="project-status">
+				<Link to={`/project/${project.name}`} key={ index } className="project-status">
 					{`${project.name}: ${getEnv(project.name, project.filePath)}`}
 				</Link>
 			);
