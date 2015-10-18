@@ -10,9 +10,13 @@ export default React.createClass({
 
 	renderEnvList() {
 		let projectName = this.props.params.projectName,
-			currentEnviroment = getEnv(projectName, projects.getFilePath(projectName));
+			filePath = projects.getFilePath(projectName),
+			currentEnviroment = getEnv(projectName, filePath);
+
 		return (
-			<List project={this.props.params.projectName} selected= {currentEnviroment}/>
+			<List project={ this.props.params.projectName }
+				selected= { currentEnviroment }
+				filePath = { filePath } />
 		);
 	},
 

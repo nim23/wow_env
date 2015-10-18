@@ -2,9 +2,8 @@ import esprima from 'esprima';
 import estraverse from 'estraverse';
 import escodegen from 'escodegen';
 import fs from 'fs';
-let filePath = '/Users/ngurung/project-cooper/www/app/settings/local.js';
 
-export default function (env) {
+export default function (env, filePath) {
 	let code,
 		comments,
 		file = fs.readFileSync(filePath, 'utf-8');
@@ -13,7 +12,7 @@ export default function (env) {
 	comments = code.comments;
 	estraverse.traverse(code, {
 		enter (node) {
-			if (node.type === 'Literal') {
+			if (node.type === 'Literal' && parent.key.name === 'environment') {
 				node.value = env;
 				this.skip();
 			}
@@ -22,5 +21,5 @@ export default function (env) {
 
 	code = escodegen.attachComments(code, comments, code.tokens);
 	code = escodegen.generate(code, { comment: true, format: { json: true } });
-	fs.writeFileSync('/Users/ngurung/project-cooper/www/app/settings/local.js', code, 'utf-8');
+	fs.writeFileSync(filePath, code, 'utf-8');
 }

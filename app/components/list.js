@@ -27,7 +27,7 @@ export default React.createClass({
 	},
 
 	onChange(value) {
-		changeEnv(value);
+		changeEnv(value, this.props.filePath);
 	},
 
 	renderEnvList() {
