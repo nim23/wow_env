@@ -7,8 +7,8 @@ export default function (project, filePath) {
 		file = fs.readFileSync(filePath, 'utf-8');
 
 	estraverse.traverse(esprima.parse(file), {
-		enter (node) {
-			if (node.type === 'Literal') {
+		enter (node, parent) {
+			if (node.type === 'Literal' && parent.key.name === 'environment') {
 				env = node.value;
 				this.skip();
 			}
