@@ -10,6 +10,11 @@ a {
 	text-decoration: none;
 }
 
+button.btn.btn-primary:disabled {
+	background-image: linear-gradient(to bottom,#ADA9A9 0,#989898 100%);
+	border: 1px solid #ADA9A9;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
