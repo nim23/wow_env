@@ -6,6 +6,7 @@ import Footer from './components/footer';
 import { IndexRoute, Router, Route, Link } from 'react-router';
 import Dashboard from './pages/dashboard';
 import AddProject from './pages/addproject';
+import Project from './pages/Project';
 
 let App =  React.createClass({
 	render() {
@@ -22,7 +23,7 @@ ReactDom.render((
 		<Route path='/' component={App}>
 			<IndexRoute component={Dashboard} />
 			<Route path='add-project' component={AddProject} />
-			<Route path='project/:projectName' component={AddProject} />
+			<Route path='project/:projectName' component={Project} />
 		</Route>
 	</Router>),
 	document.getElementById('main'));

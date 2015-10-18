@@ -8,6 +8,13 @@ export default {
 		return projects;
 	},
 
+	getFilePath(projectName) {
+		let project = projects.find((element, index, projects)=> {
+			return element.name === projectName;
+		});
+		return project.filePath;
+	},
+
 	addProject(name, filePath) {
 		projects.push({
 			name: name,

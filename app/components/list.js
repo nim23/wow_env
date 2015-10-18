@@ -1,5 +1,6 @@
 import React from 'react';
-import changeEnv from '../code-parser/change-env';
+import RadioGroup from 'react-radio';
+import changeEnv from '../code-parser/changeenv';
 
 export default React.createClass({
 	getInitialState() {
@@ -12,6 +13,10 @@ export default React.createClass({
 				value: 'dev'
 			},
 			{
+				label: 'Qa',
+				value: 'qa'
+			},
+			{
 				label: 'Uat',
 				value: 'uat'
 			}, {
@@ -21,24 +26,30 @@ export default React.createClass({
 		};
 	},
 
-	onClick(value) {
+	onChange(value) {
 		changeEnv(value);
 	},
 
 	renderEnvList() {
-		return this.state.environments.map((env, index)=> {
+		let environmentList = this.state.environments.map((env, index)=> {
 			return (
-				<a key={index} className="env" onClick={ this.onClick.bind(this, env.value) }>
+				<div className="form-group" key={ index }>
+					<input type="radio" value={ env.value } />
 					{env.label}
-				</a>
-			);
+				</div>);
 		});
+
+		return (
+			<RadioGroup name="environments" value={this.props.selected} onChange={ this.onChange }>
+				{ environmentList }
+			</RadioGroup>
+		);
 	},
 
 	render() {
 		return (
 			<div className="env-list">
-				{this.renderEnvList()}
+				{ this.renderEnvList() }
 			</div>
 		);
 	}
